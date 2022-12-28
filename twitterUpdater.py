@@ -4,6 +4,7 @@ import tweepy
 import schedule
 import time
 import os
+import re
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 load_dotenv()
@@ -19,7 +20,7 @@ auth = tweepy.OAuth1UserHandler(api_key, api_secret, access_token, access_token_
 api = tweepy.API(auth)
 
 # Set the time when the tweet should be sent
-tweet_time = datetime(year=2022, month=12, day=28, hour=9, minute=55, second=0)
+tweet_time = datetime(year=2022, month=12, day=28, hour=10, minute=28, second=0)
 
 def check_for_new_vid():
     channelsSearch = ChannelsSearch('Sanjin Dedic', limit = 1, region = 'US')
@@ -31,14 +32,17 @@ def check_for_new_vid():
     skinny_link = vid_link.split('&list')[0]
     vid_title = videos["videos"][0]["accessibility"]["title"]
     result=re.search("\d+ hours",vid_title)
-    github_link = ''
-    if int(result.group().split(" ")[0])<24:
-        status = '''Sanjin's bot here, with exciting news, seconds ago my master got up off his lazy butt and auploaded a video titled: {}
-        check out how I do these notifications GitHub link:{}
-        video: {}
-        '''.format(vid_title,github_link,vid_link)
-        print(status)
-        #api.update_status(status)
+    github_link = 'https://github.com/Sanjin84/socialAPI/blob/main/twitterUpdater.py'
+    if result != None:
+        if int(result.group().split(" ")[0])<24:
+            status = '''Sanjin's bot here, with exciting news, seconds ago my master got up off his lazy butt and auploaded a video titled: {}
+            check out how I do these notifications GitHub link:{}
+            video: {}
+            '''.format(vid_title,github_link,vid_link)
+            print(status)
+            #api.update_status(status)
+    else:
+        print('no new vid yet')
 
 def friday_tweet():
     global tweet_time
@@ -50,7 +54,7 @@ def friday_tweet():
     videos=Playlist.getVideos(pl)
     ch=random.randint(0,9)
     vid_link = videos["videos"][ch]["link"]
-    github_link = 'https://github.com/Sanjin84/pylinux/blob/main/logic_bombs/auto_tweet.py'
+    github_link = 'https://github.com/Sanjin84/socialAPI/blob/main/twitterUpdater.py'
     my_tweet = ''' Sanjin's Bot here wishing you a happy Friday morning with a recent video from my master's channel: {}
 
     Help me grow and improve, take a look at my code and suggest improvements:{}
@@ -70,7 +74,7 @@ def friday_tweet():
     # Sleep for 1 minute before checking the time again
     
 
-schedule.every(1).minutes.do(tweet_things)
+schedule.every(1).minutes.do(friday_tweet)
 schedule.every(1).minutes.do(check_for_new_vid)
 
 while 1:
