@@ -9,9 +9,7 @@ load_dotenv()
 client_id = os.getenv("client_id")
 client_secret = os.getenv("client_secret")
 person_id = os.getenv("person_id")
-
-person_id = "477007202"
-access_token = 'AQUlpzxhEMivyNDCEnuRU2V6T7uBYBItvON0hVdL3CzlJnccYg1AnWY4OgZ06uO4d4Fe5SJ41BiAbsQcE2swSDsTfweRvz-KrIjNl9JKbwbaUD-fysdnTEGBrWNyU-1fAeDPzSoBUFSeHGK8n6oDH51EfTx4W9IHiuUQBNMInsJbPCNa1E2oiiGmBkcPA1IpOJQPk9m5e64bdi-KRxcMAHs8m4q58ZaHOGcdQMN1f7keRxcTBMuuodGveaj-V5bXZ5WFkiGysAS23ZPdw1SGhmlkDDh0cMTaWpE3ErkzZ2WAjv5S5E-FH9fRdUBwbwuwcAFs0AF2FFVsCXghfz7fMWlWdch-2A'
+access_token = os.getenv("li_access_token")
 
 # Get LinkedIn user ID
 url = "https://api.linkedin.com/v2/me"
@@ -59,11 +57,4 @@ payload = {
 response = requests.post(url=url, headers=headers, json = payload)
 
 print(response.json())
-
-'''
-'''
-curl --request POST \
---url ' https://api.linkedin.com/v2/me' \
---header 'content-type: application/x-www-form-urlencoded' \    
---data access_token='AQUlpzxhEMivyNDCEnuRU2V6T7uBYBItvON0hVdL3CzlJnccYg1AnWY4OgZ06uO4d4Fe5SJ41BiAbsQcE2swSDsTfweRvz-KrIjNl9JKbwbaUD-fysdnTEGBrWNyU-1fAeDPzSoBUFSeHGK8n6oDH51EfTx4W9IHiuUQBNMInsJbPCNa1E2oiiGmBkcPA1IpOJQPk9m5e64bdi-KRxcMAHs8m4q58ZaHOGcdQMN1f7keRxcTBMuuodGveaj-V5bXZ5WFkiGysAS23ZPdw1SGhmlkDDh0cMTaWpE3ErkzZ2WAjv5S5E-FH9fRdUBwbwuwcAFs0AF2FFVsCXghfz7fMWlWdch-2A' \
 '''
