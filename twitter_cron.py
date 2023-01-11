@@ -1,7 +1,6 @@
 from youtubesearchpython import *
 import random
 import tweepy
-import time
 import os
 import re
 import json

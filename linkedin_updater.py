@@ -1,10 +1,14 @@
 import requests                 # To deal with REST APIs
 import json
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 
 # Get the ClientID and ClientSecret to get the access token
-client_id       = "865t0c39758xha"
-client_secret   = "GwVEXiUImvEz1WUk"
-organization_id = "YOUR_ORGANIZATION_ID"
+client_id = os.getenv("client_id")
+client_secret = os.getenv("client_secret")
+person_id = os.getenv("person_id")
 
 person_id = "477007202"
 access_token = 'AQUlpzxhEMivyNDCEnuRU2V6T7uBYBItvON0hVdL3CzlJnccYg1AnWY4OgZ06uO4d4Fe5SJ41BiAbsQcE2swSDsTfweRvz-KrIjNl9JKbwbaUD-fysdnTEGBrWNyU-1fAeDPzSoBUFSeHGK8n6oDH51EfTx4W9IHiuUQBNMInsJbPCNa1E2oiiGmBkcPA1IpOJQPk9m5e64bdi-KRxcMAHs8m4q58ZaHOGcdQMN1f7keRxcTBMuuodGveaj-V5bXZ5WFkiGysAS23ZPdw1SGhmlkDDh0cMTaWpE3ErkzZ2WAjv5S5E-FH9fRdUBwbwuwcAFs0AF2FFVsCXghfz7fMWlWdch-2A'

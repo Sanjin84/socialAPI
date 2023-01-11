@@ -9,8 +9,9 @@ load_dotenv()
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 
 # Credentials you get from registering a new application
-client_id = "865t0c39758xha"
-client_secret = "GwVEXiUImvEz1WUk"
+client_id = os.getenv("client_id")
+client_secret = os.getenv("client_secret")
+person_id = os.getenv("person_id")
 
 # LinkedIn OAuth2 requests require scope and redirect_url parameters.
 # Ensure these values match the auth values in your LinkedIn App
